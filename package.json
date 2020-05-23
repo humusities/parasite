@@ -32,7 +32,9 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./assets/icon.icns"
+        "name": "Humusities",
+        "icon": "./assets/icon.icns",
+        "appCategoryType": "public.app-category.utilities"
       },
       "makers": [
         {
