@@ -12,6 +12,9 @@
   "keywords": [],
   "author": "Elias Rhouzlane",
   "license": "CC0-1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.51",
     "@electron-forge/maker-deb": "6.0.0-beta.51",
