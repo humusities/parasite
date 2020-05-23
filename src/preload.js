@@ -31,7 +31,6 @@ ipcRenderer
 
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("create-server").addEventListener("click", () => {
-    console.log("ok")
     ipcRenderer.send("create");
   });
 });

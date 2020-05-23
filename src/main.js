@@ -15,4 +15,4 @@ app
   .on("window-all-closed", () => process.platform !== "darwin" && app.quit())
   .whenReady()
   .then(newWindow)
-  .then((window) => window.loadFile("./app/index.html").then(() => onWindow(window)));
+  .then((window) => window.loadFile("./index.html").then(() => onWindow(window)));
