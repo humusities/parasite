@@ -1,6 +1,6 @@
 {
   "name": "@humusities/parasite",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Hypercore File-based Social Network",
   "main": "./esm/esm.js",
   "scripts": {
