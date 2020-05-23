@@ -1,0 +1,70 @@
+body {
+  padding: 1rem;
+}
+body,
+html {
+  margin: 0;
+  background: black;
+  color: white;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-auto-rows: min-content;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+li {
+  list-style: decimal-leading-zero;
+}
+
+a {
+  color: white;
+}
+
+#create-server:disabled > span {
+  display: none;
+}
+
+#server-info {
+  color: white;
+  font-size: 16px;
+  line-height: 50px;
+  margin-top: -25px;
+  margin-left: -3px;
+  position: absolute;
+  pointer-events: none;
+}
+
+#server-info span {
+  width: 15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+button {
+  width: 100%;
+  height: 1px;
+  line-height: 0;
+  text-align: left;
+  background: transparent;
+  border: 0px solid white;
+  border-style: double;
+  color: white;
+  padding: 1rem;
+  font-style: italic;
+  cursor: context-menu;
+  font-size: 4rem;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  background: blue;
+}
+
+button:disabled {
+  cursor: initial;
+}
+
+button:not(:disabled):hover {
+  background: rgba(0, 0, 255, 0.596);
+}
