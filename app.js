@@ -39,7 +39,8 @@ createApiServer(systemIO)
   .then(({ port }) => `http://localhost:${port}`)
   .then((apiURL) =>
     createStaticServer()
-      .then(({ port }) => `http://localhost:${port}/?api=${encode(apiURL)}`)
+      .then((server) => server.address().port)
+      .then((port) => `http://localhost:${port}/?api=${encode(apiURL)}`)
       .then((staticURL) => console.log(staticURL) || staticURL)
       .then((staticURL) => () => !count() && create().loadURL(staticURL))
       .then((createWindow) =>

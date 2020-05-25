@@ -8,7 +8,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-  "repository": "https://github.com/nestarz/commoners",
+  "repository": "git@github.com:humusities/parasite.git",
   "keywords": [],
   "author": "Elias Rhouzlane",
   "license": "CC0-1.0",
@@ -24,15 +24,10 @@
     "electron": "^9.0.0"
   },
   "dependencies": {
-    "@eliaspourquoi/heritage": "^0.1.9",
     "@humusities/inhabit": "^0.0.16",
     "electron-log": "^4.2.0",
-    "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
-    "esdev": "^0.1.1",
-    "esm": "^3.2.25",
-    "servor": "^4.0.2",
-    "vue": "^3.0.0-beta.14"
+    "esm": "^3.2.25"
   },
   "config": {
     "forge": {
