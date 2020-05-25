@@ -135,3 +135,11 @@ form {
   padding: 0;
   margin: 0;
 }
+
+.buttons {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  grid-gap: 0.5rem;
+  justify-items: center;
+  align-content: center;
+}

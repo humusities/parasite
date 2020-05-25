@@ -34,18 +34,24 @@ const Peers = ({ apiURL }) => {
   return (
     <div className="instance">
       {peers.length ? (
-        peers.map(({ host, port, interactive }, i) => (
+        peers.map(({ host, port, static: { address } }, i) => (
           <>
             <button>{i + 1}</button>
-            <Peer apiURL={apiURL} {...interactive}>
-              {`${host}:${port}`}
-            </Peer>
-            <button
-              onClick={() => open(apiURL, `http://${host}:${port}`)}
-              className="option"
-            >
-              WEBDAV
-            </button>
+            <span>{`${host}:${port}`}</span>
+            <div className="buttons">
+              <button
+                onClick={() => open(apiURL, `http://${address.host}:${address.port}`)}
+                className="option"
+              >
+                BROWSE
+              </button>
+              <button
+                onClick={() => open(apiURL, `http://${host}:${port}`)}
+                className="option"
+              >
+                WEBDAV
+              </button>
+            </div>
           </>
         ))
       ) : (

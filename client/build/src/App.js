@@ -27,13 +27,15 @@ const Peers = ({apiURL}) => {
   const peers = usePeers(apiURL);
   return React.createElement("div", {
     className: "instance"
-  }, peers.length ? peers.map(({host, port, interactive}, i) => React.createElement(React.Fragment, null, React.createElement("button", null, i + 1), React.createElement(Peer, {
-    apiURL,
-    ...interactive
-  }, `${host}:${port}`), React.createElement("button", {
+  }, peers.length ? peers.map(({host, port, static: {address}}, i) => React.createElement(React.Fragment, null, React.createElement("button", null, i + 1), React.createElement("span", null, `${host}:${port}`), React.createElement("div", {
+    className: "buttons"
+  }, React.createElement("button", {
+    onClick: () => open(apiURL, `http://${address.host}:${address.port}`),
+    className: "option"
+  }, "BROWSE"), React.createElement("button", {
     onClick: () => open(apiURL, `http://${host}:${port}`),
     className: "option"
-  }, "WEBDAV"))) : React.createElement("span", {
+  }, "WEBDAV")))) : React.createElement("span", {
     className: "fallback"
   }, "No connected peers..."));
 };
