@@ -2,6 +2,11 @@
   display: none;
 }
 
+:root {
+  --primary: rgb(54, 54, 54);
+  --secondary: rgb(251, 255, 0);
+}
+
 body,
 html {
   -webkit-app-region: drag;
@@ -9,7 +14,7 @@ html {
   margin: 0;
   min-height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: rgb(54, 54, 54);
+  background: var(--background);
   user-select: none;
 }
 
@@ -22,7 +27,7 @@ body {
 
 nav {
   display: grid;
-  grid-template-columns: min-content min-content min-content;
+  grid-template-columns: min-content min-content min-content 1fr;
   grid-gap: 0.5rem;
   background: black;
   color: white;
@@ -30,10 +35,15 @@ nav {
   padding: 0.5rem;
 }
 
+nav > button {
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
 main {
   box-sizing: border-box;
   overflow: hidden;
-  background: rgb(54, 54, 54);
+  background: var(--primary);
   color: white;
   padding: 0.5rem;
   display: grid;
@@ -58,15 +68,14 @@ main {
   text-decoration: none;
 }
 
-.instance button {
-  font-size: 10px;
-}
+
 button {
+  font-size: 10px;
   border: none;
   padding: 0;
   cursor: pointer;
   background: rgb(88, 88, 88);
-  color: rgb(251, 255, 0);
+  color: var(--secondary);
   border-radius: 50%;
   width: 15px;
   height: 15px;
@@ -81,11 +90,12 @@ button:hover {
 }
 
 a.active {
-  color: rgb(251, 255, 0);
+  color: var(--secondary);
 }
 
 input:disabled,
-button:disabled {
+button:disabled,
+.disabled {
   display: none;
 }
 
@@ -110,4 +120,18 @@ input {
 
 input:focus {
   outline: rgba(255, 255, 0, 0.089) 1px solid;
+}
+
+.fallback {
+  color: rgb(109, 109, 109);
+  font-size: 0.75rem;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+form {
+  padding: 0;
+  margin: 0;
 }

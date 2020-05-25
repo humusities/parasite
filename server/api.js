@@ -1,4 +1,4 @@
-import { shell } from "electron";
+import { shell, app } from "electron";
 import http from "http";
 import createSwarmHTTP from "@humusities/inhabit";
 
@@ -33,6 +33,10 @@ const createActions = async ({
       leaveTopic(topic);
       topics.delete(topic);
       res.end();
+    },
+    closeApp: (_, res) => {
+      res.end();
+      app.quit();
     },
     open: ({ url }, res) => {
       shell.openExternal(get(url, "/open?url"));

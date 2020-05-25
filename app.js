@@ -14,6 +14,7 @@ const create = () => {
     alwaysOnTop: true,
     transparent: true,
     frame: false,
+    hasShadow: false
   });
   win.setPosition(20, 120);
   return win;

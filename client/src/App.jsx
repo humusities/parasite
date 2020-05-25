@@ -33,20 +33,24 @@ const Peers = ({ apiURL }) => {
   const peers = usePeers(apiURL);
   return (
     <div className="instance">
-      {peers.map(({ host, port, interactive }, i) => (
-        <>
-          <button>{i + 1}</button>
-          <Peer apiURL={apiURL} {...interactive}>
-            {`${host}:${port}`}
-          </Peer>
-          <button
-            onClick={() => open(apiURL, `http://${host}:${port}`)}
-            className="option"
-          >
-            WEBDAV
-          </button>
-        </>
-      ))}
+      {peers.length ? (
+        peers.map(({ host, port, interactive }, i) => (
+          <>
+            <button>{i + 1}</button>
+            <Peer apiURL={apiURL} {...interactive}>
+              {`${host}:${port}`}
+            </Peer>
+            <button
+              onClick={() => open(apiURL, `http://${host}:${port}`)}
+              className="option"
+            >
+              WEBDAV
+            </button>
+          </>
+        ))
+      ) : (
+        <span className="fallback">No connected peers...</span>
+      )}
     </div>
   );
 };
@@ -92,35 +96,39 @@ const Serve = ({ apiURL }) => {
       {instances.map((instance) => (
         <Instance {...instance} apiURL={apiURL} />
       ))}
-      <button disabled={!!instances.length} onClick={askHosting}>
-        +
-      </button>
+      <div className={classs({ instance: true, disabled: !!instances.length })}>
+        <button disabled={!!instances.length} onClick={askHosting}>
+          +
+        </button>
+        <span className="fallback">Share a directory</span>
+      </div>
     </>
   );
 };
 
 const AddTopic = ({ apiURL, disabled }) => {
   const ref = useRef();
-  const post = () => {
+  const post = (e) => {
     const url = new URL("addTopic", apiURL);
     console.log(ref.current.value);
     url.searchParams.set("name", ref.current.value);
     fetch(url);
+    e.preventDefault();
   };
 
   return (
-    <div className="instance topic">
-      <button disabled={disabled} onClick={post}>
+    <form onSubmit={post} className="instance topic">
+      <button type="submit" disabled={disabled}>
         +
       </button>
       <input
+        minlength="10"
         disabled={disabled}
         ref={ref}
         type="text"
         placeholder="Enter a topic to join peers..."
-        onKeyDown={(e) => e.keyCode == 13 && post()}
       ></input>
-    </div>
+    </form>
   );
 };
 
@@ -147,7 +155,7 @@ const Topic = ({ apiURL, topic }) => {
   };
 
   return (
-    <div className="instance">
+    <div className="instance topic">
       <button onClick={remove}>✕</button>
       <span>{topic}</span>
     </div>
@@ -173,8 +181,13 @@ const classs = (object) =>
     ""
   );
 
-const Tabs = ({ children }) => {
+const Tabs = ({ apiURL, children }) => {
   const [active, setActive] = useState(0);
+  const remove = () => {
+    const removeURL = new URL("closeApp", apiURL);
+    removeURL.searchParams.set("type", "close");
+    fetch(removeURL);
+  };
   return (
     <>
       <nav>
@@ -186,6 +199,7 @@ const Tabs = ({ children }) => {
             {name}
           </a>
         ))}
+        <button onClick={remove}>✕</button>
       </nav>
       <main>{children[active]}</main>
     </>
@@ -195,9 +209,9 @@ const Tabs = ({ children }) => {
 export default ({
   apiURL = new URLSearchParams(window.location.search).get("api"),
 } = {}) => (
-  <Tabs>
+  <Tabs apiURL={apiURL}>
     <Topics name="Topic" apiURL={apiURL} />
     <Peers name="Peers" apiURL={apiURL} />
-    <Serve name="Instances" apiURL={apiURL} />
+    <Serve name="Shared" apiURL={apiURL} />
   </Tabs>
 );

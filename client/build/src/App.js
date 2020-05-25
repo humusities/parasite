@@ -27,13 +27,15 @@ const Peers = ({apiURL}) => {
   const peers = usePeers(apiURL);
   return React.createElement("div", {
     className: "instance"
-  }, peers.map(({host, port, interactive}, i) => React.createElement(React.Fragment, null, React.createElement("button", null, i + 1), React.createElement(Peer, {
+  }, peers.length ? peers.map(({host, port, interactive}, i) => React.createElement(React.Fragment, null, React.createElement("button", null, i + 1), React.createElement(Peer, {
     apiURL,
     ...interactive
   }, `${host}:${port}`), React.createElement("button", {
     onClick: () => open(apiURL, `http://${host}:${port}`),
     className: "option"
-  }, "WEBDAV"))));
+  }, "WEBDAV"))) : React.createElement("span", {
+    className: "fallback"
+  }, "No connected peers..."));
 };
 const useHosting = (apiURL) => {
   const [instances, setInstances] = useState([]);
@@ -74,30 +76,39 @@ const Serve = ({apiURL}) => {
   return React.createElement(React.Fragment, null, instances.map((instance) => React.createElement(Instance, {
     ...instance,
     apiURL
-  })), React.createElement("button", {
+  })), React.createElement("div", {
+    className: classs({
+      instance: true,
+      disabled: !!instances.length
+    })
+  }, React.createElement("button", {
     disabled: !!instances.length,
     onClick: askHosting
-  }, "+"));
+  }, "+"), React.createElement("span", {
+    className: "fallback"
+  }, "Share a directory")));
 };
 const AddTopic = ({apiURL, disabled}) => {
   const ref = useRef();
-  const post = () => {
+  const post = (e) => {
     const url = new URL("addTopic", apiURL);
     console.log(ref.current.value);
     url.searchParams.set("name", ref.current.value);
     fetch(url);
+    e.preventDefault();
   };
-  return React.createElement("div", {
+  return React.createElement("form", {
+    onSubmit: post,
     className: "instance topic"
   }, React.createElement("button", {
-    disabled,
-    onClick: post
+    type: "submit",
+    disabled
   }, "+"), React.createElement("input", {
+    minlength: "10",
     disabled,
     ref,
     type: "text",
-    placeholder: "Enter a topic to join peers...",
-    onKeyDown: (e) => e.keyCode == 13 && post()
+    placeholder: "Enter a topic to join peers..."
   }));
 };
 const useTopics = (apiURL) => {
@@ -121,7 +132,7 @@ const Topic = ({apiURL, topic}) => {
     fetch(removeURL);
   };
   return React.createElement("div", {
-    className: "instance"
+    className: "instance topic"
   }, React.createElement("button", {
     onClick: remove
   }, "✕"), React.createElement("span", null, topic));
@@ -137,22 +148,31 @@ const Topics = ({apiURL}) => {
   }));
 };
 const classs = (object) => Object.entries(object).reduce((str, [name, bool]) => `${str}${bool ? ` ${name}` : ""}`, "");
-const Tabs = ({children}) => {
+const Tabs = ({apiURL, children}) => {
   const [active, setActive] = useState(0);
+  const remove = () => {
+    const removeURL = new URL("closeApp", apiURL);
+    removeURL.searchParams.set("type", "close");
+    fetch(removeURL);
+  };
   return React.createElement(React.Fragment, null, React.createElement("nav", null, children.map(({props: {name}}, index) => React.createElement("a", {
     className: classs({
       active: index === active
     }),
     onClick: () => setActive(index)
-  }, name))), React.createElement("main", null, children[active]));
+  }, name)), React.createElement("button", {
+    onClick: remove
+  }, "✕")), React.createElement("main", null, children[active]));
 };
-export default ({apiURL = new URLSearchParams(window.location.search).get("api")} = {}) => React.createElement(Tabs, null, React.createElement(Topics, {
+export default ({apiURL = new URLSearchParams(window.location.search).get("api")} = {}) => React.createElement(Tabs, {
+  apiURL
+}, React.createElement(Topics, {
   name: "Topic",
   apiURL
 }), React.createElement(Peers, {
   name: "Peers",
   apiURL
 }), React.createElement(Serve, {
-  name: "Instances",
+  name: "Shared",
   apiURL
 }));
