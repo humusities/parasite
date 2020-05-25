@@ -28,4 +28,6 @@
 <div align="center">
   Explore their directories using your favourite Browser.
   <br/> Webdav support let you mount them inside your Filesystem !
+  <br/> Once you quit, your local server is closed and no one can access your data anymore, **ever**.
+  <br/> It's supposed to help you be in total control of your data.
 </div>
