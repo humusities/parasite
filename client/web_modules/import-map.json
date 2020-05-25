@@ -1,0 +1,45 @@
+{
+  "imports": {
+    "react": "./react/16.13.1/react.js",
+    "react-dom": "./react-dom/16.13.1/react-dom.js",
+    "es-module-shims": "./es-module-shims/0.4.6/es-module-shims.js",
+    "@reach/router": "./@reach/router/1.3.3/router.js"
+  },
+  "scopes": {
+    "./@vue/runtime-dom/3.0.0-beta.14/": {
+      "@vue/runtime-core/runtime-core.js": "./@vue/runtime-core/3.0.0-beta.14/runtime-core.js",
+      "@vue/shared/shared.js": "./@vue/shared/3.0.0-beta.14/shared.js"
+    },
+    "./@vue/runtime-core/3.0.0-beta.14/": {
+      "@vue/reactivity/reactivity.js": "./@vue/reactivity/3.0.0-beta.14/reactivity.js",
+      "@vue/shared/shared.js": "./@vue/shared/3.0.0-beta.14/shared.js"
+    },
+    "./@vue/reactivity/3.0.0-beta.14/": {
+      "@vue/shared/shared.js": "./@vue/shared/3.0.0-beta.14/shared.js"
+    },
+    "./react-dom/16.13.1/": {
+      "react": "./react/16.13.1/react.js"
+    },
+    "./@reach/router/1.3.3/": {
+      "react": "./react/16.13.1/react.js",
+      "invariant": "./invariant/2.2.4/invariant.js",
+      "react-lifecycles-compat": "./react-lifecycles-compat/3.0.4/react-lifecycles-compat.js",
+      "create-react-context": "./create-react-context/0.3.0/create-react-context.js",
+      "gud": "./gud/1.0.0/gud.js",
+      "warning": "./warning/4.0.3/warning.js",
+      "prop-types": "./prop-types/15.7.2/prop-types.js",
+      "object-assign": "./object-assign/4.1.1/object-assign.js",
+      "react-is": "./react-is/16.13.1/react-is.js"
+    },
+    "./create-react-context/0.3.0/": {
+      "react": "./react/16.13.1/react.js",
+      "prop-types": "./prop-types/15.7.2/prop-types.js",
+      "gud": "./gud/1.0.0/gud.js",
+      "warning": "./warning/4.0.3/warning.js"
+    },
+    "./prop-types/15.7.2/": {
+      "react-is": "./react-is/16.13.1/react-is.js",
+      "object-assign": "./object-assign/4.1.1/object-assign.js"
+    }
+  }
+}

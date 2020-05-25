@@ -2,7 +2,7 @@
   "name": "@humusities/parasite",
   "version": "0.0.4",
   "description": "Hypercore File-based Social Network",
-  "main": "./esm/esm.js",
+  "main": "./server/utils/esm.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -24,10 +24,15 @@
     "electron": "^9.0.0"
   },
   "dependencies": {
-    "@humusities/inhabit": "^0.0.9",
+    "@eliaspourquoi/heritage": "^0.1.9",
+    "@humusities/inhabit": "^0.0.12",
     "electron-log": "^4.2.0",
+    "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
-    "esm": "^3.2.25"
+    "esdev": "^0.1.1",
+    "esm": "^3.2.25",
+    "servor": "^4.0.2",
+    "vue": "^3.0.0-beta.14"
   },
   "config": {
     "forge": {
