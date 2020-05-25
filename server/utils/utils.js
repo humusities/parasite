@@ -1,8 +1,6 @@
 import url from "url";
 import { EventEmitter } from "events";
 
-import { dialog, BrowserWindow } from "electron";
-
 export const writeStreamtHead = (res) =>
   res.writeHead(200, {
     connection: "keep-alive",
@@ -82,18 +80,14 @@ export class DictEmitter extends EventEmitter {
   }
 }
 
-export const createDirectorySelector = () => {
+export const createDirectorySelector = (systemIoOpenDirectory) => {
   let open = false;
   return Object.freeze({
     open,
     get: () => {
       if (open) throw Error("Dialog already opened.");
       open = true;
-      return dialog
-        .showOpenDialog(BrowserWindow.getAllWindows()[0], {
-          properties: ["openDirectory"],
-        })
-        .then(({ filePaths: [file] }) => file)
+      return systemIoOpenDirectory()
         .finally((file) => {
           open = false;
           return file;

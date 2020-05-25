@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, shell, dialog, BrowserWindow } from "electron";
 
 import createApiServer from "./server/api.js";
 import createStaticServer from "./server/static.js";
@@ -14,13 +14,28 @@ const create = () => {
     alwaysOnTop: true,
     transparent: true,
     frame: false,
-    hasShadow: false
+    hasShadow: false,
   });
   win.setPosition(20, 120);
   return win;
 };
 
-createApiServer()
+const systemIO = {
+  app: {
+    quit: app.quit,
+  },
+  shell: {
+    openExternal: shell.openExternal,
+  },
+  openDirectory: () =>
+    dialog
+      .showOpenDialog(BrowserWindow.getAllWindows()[0], {
+        properties: ["openDirectory"],
+      })
+      .then(({ filePaths: [file] }) => file),
+};
+
+createApiServer(systemIO)
   .then(({ port }) => `http://localhost:${port}`)
   .then((apiURL) =>
     createStaticServer()

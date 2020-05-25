@@ -1,4 +1,3 @@
-import { shell, app } from "electron";
 import http from "http";
 import createSwarmHTTP from "@humusities/inhabit";
 
@@ -9,13 +8,13 @@ import {
   stream,
 } from "./utils/utils.js";
 
-const createActions = async ({
+const createActions = (systemIO) => async ({
   client: createPeersListener,
   server: createWebdavInstance,
   join: joinTopic,
   leave: leaveTopic,
 }) => {
-  const directorySelector = createDirectorySelector();
+  const directorySelector = createDirectorySelector(systemIO.openDirectory);
   const peers = await createPeersListener();
   const instances = new DictEmitter();
   const topics = new DictEmitter();
@@ -36,10 +35,10 @@ const createActions = async ({
     },
     closeApp: (_, res) => {
       res.end();
-      app.quit();
+      systemIO.app.quit();
     },
     open: ({ url }, res) => {
-      shell.openExternal(get(url, "/open?url"));
+      systemIO.shell.openExternal(get(url, "/open?url"));
       res.end();
     },
     streamTopics: (_, res) =>
@@ -74,9 +73,9 @@ const createActions = async ({
   };
 };
 
-export default () =>
+export default (systemIO) =>
   Promise.resolve(createSwarmHTTP())
-    .then(createActions)
+    .then(createActions(systemIO))
     .then(createListener)
     .then(http.createServer)
     .then((server) => server.listen(0))
