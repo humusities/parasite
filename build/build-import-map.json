@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "../client/src/App.jsx": "../build/client/src/App.js",
-    "../out/Humusities-darwin-x64/Humusities.app/Contents/Resources/app/client/src/App.jsx": "../build/out/Humusities-darwin-x64/Humusities.app/Contents/Resources/app/client/src/App.js"
-  }
-}
