@@ -291,20 +291,20 @@
     acorn "^7.2.0"
     node-fetch "^2.6.0"
 
-"@humusities/inhabit@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@humusities/inhabit/-/inhabit-0.0.12.tgz#2a437256eef05ff67d65cdd112863a0ba67be3c4"
-  integrity sha512-9Xbx3T4cPCs+9ngnXa9tWwuczGlVcYYw7BPg1arh553Nret4NlBIpLnnEzWPwV6t7xkcwUJX0Pb75VF8pZJpCg==
+"@humusities/inhabit@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@humusities/inhabit/-/inhabit-0.0.16.tgz#3848110c1bbaaf3e5e572917103dcbf3550036af"
+  integrity sha512-njGO7uAlqK3uS7S0j5EsJ7BGLgrwHBTMpNu0+0qJoUTAxq0kx8Kt/i3mC+HpsyiGF696Ay+dwX+sDqbH9wXHKw==
   dependencies:
-    "@humusities/interactive-webdav" "^0.0.3"
+    "@humusities/interactive-webdav" "^0.0.6"
     "@humusities/node-webdav" "^0.0.4"
     crypto "^1.0.1"
     hyperswarm "^2.14.0"
 
-"@humusities/interactive-webdav@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@humusities/interactive-webdav/-/interactive-webdav-0.0.3.tgz#ccf0d6d91b9d06383ff2c4fdf070f7e9564f3574"
-  integrity sha512-Fg7gKVKZ+Nf69Agz8eMXmCY0IFxZILHLTArl9WnldVqkGsK0QsOxi/er1Dxju84JyS3soTFxRh1s3kCOzpU/6w==
+"@humusities/interactive-webdav@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@humusities/interactive-webdav/-/interactive-webdav-0.0.6.tgz#9c689a06cb71a1f2fb6b332dc124ad1905b96a33"
+  integrity sha512-iWkeoxHbekUFunLtlsgVe/S0SX++AstL6WWm6UvgyexWj6VViws3hn8/xA6khM6QC/mvZNzjWDVMAdX4r5ORWw==
   dependencies:
     "@eliaspourquoi/heritage" "^0.1.9"
     esdev "^0.1.1"
