@@ -118,6 +118,7 @@ const AddTopic = ({ apiURL, disabled }) => {
         ref={ref}
         type="text"
         placeholder="Enter a topic to join peers..."
+        onKeyDown={(e) => e.keyCode == 13 && post()}
       ></input>
     </div>
   );
@@ -195,8 +196,8 @@ export default ({
   apiURL = new URLSearchParams(window.location.search).get("api"),
 } = {}) => (
   <Tabs>
-    <Serve name="Instances" apiURL={apiURL} />
-    <Peers name="Peers" apiURL={apiURL} />
     <Topics name="Topic" apiURL={apiURL} />
+    <Peers name="Peers" apiURL={apiURL} />
+    <Serve name="Instances" apiURL={apiURL} />
   </Tabs>
 );

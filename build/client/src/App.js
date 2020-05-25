@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from "react";
-import register from "./../../src/utils/event-source.js";
+import register from "./../../../client/src/utils/event-source.js";
 const usePeers = (apiURL) => {
   const [peers, setPeers] = useState([]);
   useEffect(() => {
@@ -96,8 +96,7 @@ const AddTopic = ({apiURL, disabled}) => {
     disabled,
     ref,
     type: "text",
-    placeholder: "Enter a topic to join peers...",
-    onKeyDown: (e) => e.keyCode == 13 && post()
+    placeholder: "Enter a topic to join peers..."
   }));
 };
 const useTopics = (apiURL) => {
@@ -147,12 +146,12 @@ const Tabs = ({children}) => {
   }, name))), React.createElement("main", null, children[active]));
 };
 export default ({apiURL = new URLSearchParams(window.location.search).get("api")} = {}) => React.createElement(Tabs, null, React.createElement(Topics, {
-  name: "Topic",
-  apiURL
-}), React.createElement(Peers, {
-  name: "Peers",
+  name: "Topic2",
   apiURL
 }), React.createElement(Serve, {
   name: "Instances",
+  apiURL
+}), React.createElement(Peers, {
+  name: "Peers",
   apiURL
 }));
